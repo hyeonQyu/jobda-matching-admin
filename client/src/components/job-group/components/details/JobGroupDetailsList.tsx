@@ -12,7 +12,7 @@ const JobGroupDetailsList = (props: JobGroupDetailsListProps) => {
     return (
         <div>
             {jobGroupList.map((jobGroup) => (
-                <JobGroupDetails jobGroup={jobGroup} />
+                <JobGroupDetails jobGroup={jobGroup} key={jobGroup.name} />
             ))}
         </div>
     );

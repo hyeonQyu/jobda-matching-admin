@@ -18,7 +18,7 @@ const JobGroupCardList = (props: JobGroupCardListProps) => {
         <div className={classNames(style.jmf_item_list_wrap, style.jmf_web)}>
             <CharacterIcon />
             {jobGroupList.map((jobGroup, index) => (
-                <JobGroupCard href={`#job_type${withDigitLength(index, 2)}`} jobGroup={jobGroup} />
+                <JobGroupCard href={`#job_type${withDigitLength(index, 2)}`} jobGroup={jobGroup} key={jobGroup.name} />
             ))}
         </div>
     );

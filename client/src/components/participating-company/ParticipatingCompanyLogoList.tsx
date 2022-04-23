@@ -14,7 +14,7 @@ const ParticipatingCompanyLogoList = (props: ParticipatingCompanyListProps) => {
     return (
         <div className={classNames(style.jmf_item_list_wrap, style.mb1)}>
             {companyList.map((company) => (
-                <ParticipatingCompanyLogo company={company} />
+                <ParticipatingCompanyLogo company={company} key={company.url} />
             ))}
         </div>
     );
