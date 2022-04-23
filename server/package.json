@@ -3,8 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "build": "pkg . --output ../out/jmf-server.exe"
+  },
+  "pkg": {
+    "scripts": "*.js",
+    "targets": [
+      "node14-win-x64"
+    ]
   },
   "keywords": [],
   "author": "",

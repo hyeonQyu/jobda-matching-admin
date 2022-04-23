@@ -1,6 +1,3 @@
-const exchangeApi = require('./api/exchangeApi');
-const quotationApi = require('./api/quotationApi');
-
 /**
  * Controller
  */

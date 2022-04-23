@@ -4,7 +4,7 @@ import Header from '@components/header/Header';
 import ParticipatingCompany from '@components/participating-company/ParticipatingCompany';
 import JobGroup from '@components/job-group/JobGroup';
 
-const Home = () => {
+const Edit = () => {
     return (
         <div className={style.jmf_wrap}>
             <Header />
@@ -16,4 +16,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Edit;

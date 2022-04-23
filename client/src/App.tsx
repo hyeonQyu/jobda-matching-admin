@@ -1,8 +1,8 @@
 import React from 'react';
-import Home from '@pages/Home';
+import Edit from '@pages/Edit';
 
 const App = () => {
-    return <Home />;
+    return <Edit />;
 };
 
 export default App;
