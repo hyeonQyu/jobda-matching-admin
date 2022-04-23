@@ -7,8 +7,10 @@
     "start": "webpack serve --env mode=dev",
     "build": "webpack --env mode=prod"
   },
+  "proxy": "http://localhost:5000/",
   "dependencies": {
     "@types/react-beautiful-dnd": "^13.1.1",
+    "axios": "^0.21.1",
     "babel-preset-mobx": "^2.0.0",
     "clean-webpack-plugin": "^4.0.0",
     "core-decorators": "^0.20.0",

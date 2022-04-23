@@ -70,9 +70,9 @@ module.exports = (mode) => {
             ],
         },
         plugins: [
-            new webpack.ProvidePlugin({
-                process: 'process/browser',
-            }),
+            // new webpack.ProvidePlugin({
+            //     process: 'process/browser',
+            // }),
             // new webpack.DefinePlugin({
             //     'process.env': loadEnv(process.env),
             // }),
