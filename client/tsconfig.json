@@ -18,6 +18,9 @@
       "@pages/*": [
         "./pages/*"
       ],
+      "@styles/*": [
+        "./styles/*"
+      ],
       "@stores/*": [
         "./stores/*"
       ],
@@ -27,8 +30,8 @@
       "@icons/*": [
         "./icons/*"
       ],
-      "@utils/*": [
-        "./utils/*"
+      "@hooks/*": [
+        "./hooks/*"
       ],
       "@requests/*": [
         "./requests/*"
