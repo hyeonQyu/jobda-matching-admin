@@ -3,6 +3,7 @@ import style from '@styles/union.scss';
 import Header from '@components/header/Header';
 import ParticipatingCompany from '@components/participating-company/ParticipatingCompany';
 import JobGroup from '@components/job-group/JobGroup';
+import SuccessReview from '@components/success-review/SuccessReview';
 
 const Edit = () => {
     return (
@@ -12,6 +13,7 @@ const Edit = () => {
                 <ParticipatingCompany />
                 <JobGroup />
             </div>
+            <SuccessReview />
         </div>
     );
 };

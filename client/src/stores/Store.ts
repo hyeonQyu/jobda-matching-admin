@@ -4,11 +4,13 @@ import { CompanyInfo } from '@models/CompanyInfo';
 import { JobGroupInfo } from '@models/JobGroupInfo';
 import { Request } from '@requests/Request';
 import { RecruitNoticeInfo } from '@models/RecruitNoticeInfo';
+import { SuccessStoryInfo } from '@models/SuccessStoryInfo';
 
 @autobind
 export default class Store {
     @observable private _companyList: CompanyInfo[] = [];
     @observable private _jobGroupList: JobGroupInfo[] = [];
+    @observable private _successStoryList: SuccessStoryInfo[] = [];
 
     @observable private _isEditMode: boolean = true;
 
@@ -18,6 +20,10 @@ export default class Store {
 
     get jobGroupList(): JobGroupInfo[] {
         return this._jobGroupList;
+    }
+
+    get successStoryList(): SuccessStoryInfo[] {
+        return this._successStoryList;
     }
 
     get isEditMode(): boolean {
@@ -75,19 +81,21 @@ export default class Store {
     @action
     async load() {
         const { data } = await Request.load();
-        const { companyList, jobGroupList } = data;
+        const { companyList, jobGroupList, successStoryList } = data;
 
         this._companyList = companyList;
         this._jobGroupList = jobGroupList;
+        this._successStoryList = successStoryList;
     }
 
     @action
     async save() {
-        const { jobGroupList, companyList } = this;
+        const { jobGroupList, companyList, successStoryList } = this;
 
         const { data } = await Request.save({
             companyList,
             jobGroupList,
+            successStoryList,
         });
 
         if (data) {

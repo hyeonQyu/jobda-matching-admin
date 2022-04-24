@@ -21,6 +21,7 @@ module.exports = {
             const data = {
                 companyList: null,
                 jobGroupList: null,
+                successStoryList: null,
             };
 
             for (const key in data) {
