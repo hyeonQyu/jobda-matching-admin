@@ -9,12 +9,28 @@ export default class Store {
     @observable private _companyList: CompanyInfo[] = [];
     @observable private _jobGroupList: JobGroupInfo[] = [];
 
+    @observable private _isEditMode: boolean = true;
+
     get companyList(): CompanyInfo[] {
         return this._companyList;
     }
 
     get jobGroupList(): JobGroupInfo[] {
         return this._jobGroupList;
+    }
+
+    get isEditMode(): boolean {
+        return this._isEditMode;
+    }
+
+    @action
+    setIsEditMode(isEdit: boolean) {
+        this._isEditMode = isEdit;
+    }
+
+    @action
+    addCompany(companyInfo: CompanyInfo) {
+        this._companyList.push(companyInfo);
     }
 
     @action

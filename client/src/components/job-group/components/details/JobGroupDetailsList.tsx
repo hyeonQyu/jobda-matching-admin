@@ -1,9 +1,11 @@
 import React from 'react';
 import JobGroupDetails from '@components/job-group/components/details/JobGroupDetails';
 import { useStore } from '@contexts/StoreContext';
+import { observer } from 'mobx-react';
 
-const JobGroupDetailsList = () => {
-    const { jobGroupList } = useStore();
+const JobGroupDetailsList = observer(() => {
+    const { store } = useStore();
+    const { jobGroupList } = store;
 
     return (
         <div>
@@ -12,6 +14,6 @@ const JobGroupDetailsList = () => {
             ))}
         </div>
     );
-};
+});
 
 export default JobGroupDetailsList;

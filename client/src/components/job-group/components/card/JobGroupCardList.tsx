@@ -8,7 +8,8 @@ import { observer } from 'mobx-react';
 import { useStore } from '@contexts/StoreContext';
 
 const JobGroupCardList = observer(() => {
-    const { jobGroupList } = useStore();
+    const { store } = useStore();
+    const { jobGroupList } = store;
     const { withDigitLength } = useNumberFormat();
 
     return (
