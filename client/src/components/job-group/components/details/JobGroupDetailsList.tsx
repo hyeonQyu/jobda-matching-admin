@@ -1,13 +1,9 @@
 import React from 'react';
 import JobGroupDetails from '@components/job-group/components/details/JobGroupDetails';
-import { JobGroupInfo } from '@models/JobGroupInfo';
+import { useStore } from '@contexts/StoreContext';
 
-export interface JobGroupDetailsListProps {
-    jobGroupList: JobGroupInfo[];
-}
-
-const JobGroupDetailsList = (props: JobGroupDetailsListProps) => {
-    const { jobGroupList } = props;
+const JobGroupDetailsList = () => {
+    const { jobGroupList } = useStore();
 
     return (
         <div>

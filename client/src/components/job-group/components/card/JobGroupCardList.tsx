@@ -3,15 +3,12 @@ import style from '@styles/union.scss';
 import classNames from 'classnames';
 import CharacterIcon from '@icons/CharacterIcon';
 import JobGroupCard from '@components/job-group/components/card/JobGroupCard';
-import { JobGroupInfo } from '@models/JobGroupInfo';
 import useNumberFormat from '@hooks/useNumberFormat';
+import { observer } from 'mobx-react';
+import { useStore } from '@contexts/StoreContext';
 
-export interface JobGroupCardListProps {
-    jobGroupList: JobGroupInfo[];
-}
-
-const JobGroupCardList = (props: JobGroupCardListProps) => {
-    const { jobGroupList } = props;
+const JobGroupCardList = observer(() => {
+    const { jobGroupList } = useStore();
     const { withDigitLength } = useNumberFormat();
 
     return (
@@ -22,6 +19,6 @@ const JobGroupCardList = (props: JobGroupCardListProps) => {
             ))}
         </div>
     );
-};
+});
 
 export default JobGroupCardList;

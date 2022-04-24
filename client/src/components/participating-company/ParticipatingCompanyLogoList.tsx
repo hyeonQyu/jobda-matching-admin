@@ -2,14 +2,12 @@ import React from 'react';
 import style from '@styles/union.scss';
 import classNames from 'classnames';
 import ParticipatingCompanyLogo from '@components/participating-company/ParticipatingCompanyLogo';
-import { CompanyInfo } from '@models/CompanyInfo';
+import { useStore } from '@contexts/StoreContext';
+import { observer } from 'mobx-react';
 
-export interface ParticipatingCompanyListProps {
-    companyList: CompanyInfo[];
-}
-
-const ParticipatingCompanyLogoList = (props: ParticipatingCompanyListProps) => {
-    const { companyList } = props;
+const ParticipatingCompanyLogoList = observer(() => {
+    const store = useStore();
+    const { companyList } = store;
 
     return (
         <div className={classNames(style.jmf_item_list_wrap, style.mb1)}>
@@ -18,6 +16,6 @@ const ParticipatingCompanyLogoList = (props: ParticipatingCompanyListProps) => {
             ))}
         </div>
     );
-};
+});
 
 export default ParticipatingCompanyLogoList;

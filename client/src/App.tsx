@@ -1,16 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Edit from '@pages/Edit';
 import { observer } from 'mobx-react';
-import { useStore } from '@contexts/StoreContext';
+import Store from '@stores/Store';
+import { StoreContext } from '@contexts/StoreContext';
 
 const App = observer(() => {
-    const store = useStore();
+    const [store] = useState(new Store());
 
     useEffect(() => {
         store.load();
     }, []);
 
-    return <Edit />;
+    return (
+        <StoreContext.Provider value={store}>
+            <Edit />
+        </StoreContext.Provider>
+    );
 });
 
 export default App;
