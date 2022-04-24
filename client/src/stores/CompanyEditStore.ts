@@ -41,4 +41,9 @@ export default class CompanyEditStore {
         this._isEditing = false;
         this.setName('');
     }
+
+    @action
+    deleteCompany(url: string) {
+        this._store.deleteCompany(url);
+    }
 }

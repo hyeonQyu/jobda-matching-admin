@@ -34,6 +34,13 @@ export default class Store {
     }
 
     @action
+    deleteCompany(url: string) {
+        this._companyList = this.companyList.filter((company) => {
+            return url !== company.url;
+        });
+    }
+
+    @action
     async load() {
         const { data } = await Request.load();
         const { companyList, jobGroupList } = data;

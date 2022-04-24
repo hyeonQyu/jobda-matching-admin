@@ -1,0 +1,37 @@
+.wrapper {
+  width: 90px;
+  height: 90px;
+  background-color: #6CDD83;
+  border-radius: 8px;
+  margin: 4px;
+  overflow: hidden;
+  transition: 0.5s;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  .mask {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    opacity: .3;
+    position: absolute;
+    top: 0;
+    background: black;
+  }
+
+  button {
+    position: absolute;
+    width: 50px;
+    height: 30px;
+    left: calc(50% - 25px);
+    top: calc(50% - 15px);
+    border-radius: 8px;
+    background-color: #f3684e;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+}
