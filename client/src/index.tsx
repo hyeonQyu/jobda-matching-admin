@@ -1,11 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
-import { HashRouter} from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
+import { StoreContext } from '@contexts/StoreContext';
+import Store from '@stores/Store';
 
 ReactDOM.render(
-    <HashRouter>
+    // <HashRouter>
+    <StoreContext.Provider value={new Store()}>
         <App />
-    </HashRouter>,
+    </StoreContext.Provider>,
+    // </HashRouter>,
     document.getElementById('root'),
 );

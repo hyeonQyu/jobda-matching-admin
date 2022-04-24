@@ -39,9 +39,9 @@
       "@models/*": [
         "./models/*"
       ],
-      "@collections/*": [
-        "./collections/*"
-      ]
+      "@contexts/*": [
+        "./contexts/*"
+      ],
     }
   },
   "include": [
