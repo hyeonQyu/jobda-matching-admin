@@ -165,4 +165,9 @@ export default class JobGroupEditStore {
             recruitNoticeUrl: '',
         };
     }
+
+    @action
+    deleteRecruitNotice(jobGroupName: string, recruitNoticeUrl: string) {
+        this._store.deleteRecruitNotice(jobGroupName, recruitNoticeUrl);
+    }
 }

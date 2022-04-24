@@ -2,17 +2,24 @@ import React from 'react';
 import style from '@styles/union.scss';
 import { RecruitNoticeInfo } from '@models/RecruitNoticeInfo';
 import useDatetime from '@hooks/useDatetime';
+import { useStore } from '@contexts/StoreContext';
+import EditableRecruitNotice from '@components/common/editable-card/editable-recruit-notice/EditableRecruitNotice';
 
 export interface RecruitNoticeProps {
     recruitNotice: RecruitNoticeInfo;
+    jobGroupName: string;
 }
 
 const RecruitNotice = (props: RecruitNoticeProps) => {
     const { recruitNotice } = props;
     const { recruitSectorName, recruitNoticeUrl, companyName, job, location, registrationDatetime, title } = recruitNotice;
     const { datetimeFormat } = useDatetime({ datetime: registrationDatetime });
+    const { store } = useStore();
+    const { isEditMode } = store;
 
-    return (
+    return isEditMode ? (
+        <EditableRecruitNotice {...props} />
+    ) : (
         <a href={recruitNoticeUrl} className={style.job_type_list_item} target={'_blank'}>
             <div className={style.job_type_item_wrap}>
                 <div className={style.job_type_list_title}>

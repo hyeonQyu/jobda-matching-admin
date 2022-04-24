@@ -21,7 +21,7 @@ const RecruitNoticeList = observer((props: RecruitNoticeListProps) => {
     return (
         <div className={style.job_type_list_wrap}>
             {recruitNoticeList.map((recruitNotice) => (
-                <RecruitNotice key={recruitNotice.recruitNoticeUrl} recruitNotice={recruitNotice} />
+                <RecruitNotice key={recruitNotice.recruitNoticeUrl} recruitNotice={recruitNotice} jobGroupName={name} />
             ))}
 
             {isEditMode && (!isEditingRecruitNotice || editingJobGroupNameOfRecruitNotice !== name) && <RecruitNoticeAdd jobGroupName={name} />}

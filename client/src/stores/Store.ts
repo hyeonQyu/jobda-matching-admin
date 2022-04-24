@@ -43,9 +43,6 @@ export default class Store {
     addRecruitNotice(recruitNotice: RecruitNoticeInfo, jobGroupName: string) {
         const newJobGroup: JobGroupInfo = this._jobGroupList.filter(({ name }) => name === jobGroupName)[0];
         newJobGroup.recruitNoticeList.push(recruitNotice);
-        // this._jobGroupList = this.jobGroupList.map((jobGroup) => {
-        //     return jobGroup.name === newJobGroup.name ? newJobGroup : jobGroup;
-        // });
     }
 
     @action
@@ -60,6 +57,19 @@ export default class Store {
         this._jobGroupList = this.jobGroupList.filter((jobGroup) => {
             return jobGroup.name !== name;
         });
+    }
+
+    @action
+    deleteRecruitNotice(jobGroupName: string, recruitNoticeUrl: string) {
+        for (let i = 0; i < this.jobGroupList.length; i++) {
+            const jobGroup = this.jobGroupList[i];
+            if (jobGroup.name === jobGroupName) {
+                jobGroup.recruitNoticeList = jobGroup.recruitNoticeList.filter((recruitNotice) => {
+                    return recruitNotice.recruitNoticeUrl !== recruitNoticeUrl;
+                });
+                return;
+            }
+        }
     }
 
     @action

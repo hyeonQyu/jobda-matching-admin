@@ -4,12 +4,13 @@ import RecruitNoticeList from '@components/job-group/components/details/recruit-
 import { JobGroupInfo } from '@models/JobGroupInfo';
 import classNames from 'classnames';
 import { useStore } from '@contexts/StoreContext';
+import { observer } from 'mobx-react';
 
 export interface JobGroupDetailsProps {
     jobGroup: JobGroupInfo;
 }
 
-const JobGroupDetails = (props: JobGroupDetailsProps) => {
+const JobGroupDetails = observer((props: JobGroupDetailsProps) => {
     const { jobGroup } = props;
     const { name, recruitNoticeList } = jobGroup;
     const { store } = useStore();
@@ -28,6 +29,6 @@ const JobGroupDetails = (props: JobGroupDetailsProps) => {
             <RecruitNoticeList jobGroup={jobGroup} />
         </details>
     );
-};
+});
 
 export default JobGroupDetails;
