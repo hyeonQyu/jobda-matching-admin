@@ -2,6 +2,8 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import style from '@styles/union.scss';
 import { SuccessStoryInfo } from '@models/SuccessStoryInfo';
+import { useStore } from '@contexts/StoreContext';
+import EditableSuccessStory from '@components/common/editable-card/editable-success-story/EditableSuccessStory';
 
 export interface SuccessStoryProps {
     successStory: SuccessStoryInfo;
@@ -10,10 +12,14 @@ export interface SuccessStoryProps {
 const SuccessStory = observer((props: SuccessStoryProps) => {
     const { successStory } = props;
     const { title, companyImgSrc, companyName, description, userId } = successStory;
+    const { store } = useStore();
+    const { isEditMode } = store;
 
     const id = `${userId.substring(0, 2)}****`;
 
-    return (
+    return isEditMode ? (
+        <EditableSuccessStory successStory={successStory} />
+    ) : (
         <div className={style.jmf_story_item}>
             <p className={style.jmf_story_title}>{title}</p>
             <p className={style.jmf_story_img}>

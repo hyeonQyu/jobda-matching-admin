@@ -65,8 +65,8 @@ export default class SuccessReviewEditStore {
     }
 
     @action
-    deleteSuccessStory() {
-        this._store.deleteSuccessStory(this.successStory);
+    deleteSuccessStory(successStory: SuccessStoryInfo) {
+        this._store.deleteSuccessStory(successStory);
     }
 
     @action
