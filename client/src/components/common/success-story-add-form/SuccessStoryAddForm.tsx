@@ -64,7 +64,7 @@ const SuccessStoryAddForm = observer((props: SuccessStoryAddFormProps) => {
                 <div className={style.button_wrapper}>
                     <button className={style.add}>추가</button>
                     <button type={'button'} className={style.cancel} onClick={finishEditSuccessStory}>
-                        삭제
+                        취소
                     </button>
                 </div>
             </form>
