@@ -1,11 +1,11 @@
-const { getJsonData } = require('./util/jsonUtil');
+const { getJsonData, saveJsonData } = require('./util/jsonUtil');
 
 const doCommonResponse = (app, path, callback) => {
     app.get(`/api/${path}`, async (req, res) => {
-        console.log(`request: ${path}`);
+        console.log(`\nrequest: ${path}`);
         try {
             callback(req, res);
-            console.log('response 성공');
+            console.log('response 성공\n');
         } catch (e) {
             console.error(e);
         }
