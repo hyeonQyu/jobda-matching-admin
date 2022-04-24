@@ -1,11 +1,15 @@
 import { AxiosPromise } from 'axios';
-import { CompanyInfo } from '@models/CompanyInfo';
 import { Client } from '@requests/common/client';
+import { UnionDataVO } from '@models/UnionDataVO';
 
 export namespace Request {
     const client = new Client('/');
 
-    export function getCompanyList(): AxiosPromise<CompanyInfo[]> {
-        return client.get('/getCompanyList');
+    export function load(): AxiosPromise<UnionDataVO> {
+        return client.get('/load');
+    }
+
+    export function save(req: UnionDataVO): AxiosPromise<boolean> {
+        return client.post('/save', req);
     }
 }

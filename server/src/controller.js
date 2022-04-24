@@ -16,15 +16,32 @@ const doCommonResponse = (app, path, callback) => {
  * Controller
  */
 module.exports = {
-    getCompanyList: (app, path) => {
+    load: (app, path) => {
         doCommonResponse(app, path, (req, res) => {
-            res.send(getJsonData('companyList'));
+            const data = {
+                companyList: null,
+                jobGroupList: null,
+            };
+
+            for (const key in data) {
+                data[key] = getJsonData(key);
+            }
+
+            res.send(data);
         });
     },
 
-    getJobGroupList: (app, path) => {
+    save: (app, path) => {
         doCommonResponse(app, path, (req, res) => {
-            res.send(getJsonData('jobGroupList'));
+            try {
+                for (const key in req) {
+                    saveJsonData(req[key], key);
+                }
+
+                res.send(true);
+            } catch (e) {
+                res.send(e);
+            }
         });
     },
 };
