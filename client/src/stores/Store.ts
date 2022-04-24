@@ -34,6 +34,11 @@ export default class Store {
     }
 
     @action
+    addJobGroup(jobGroup: JobGroupInfo) {
+        this._jobGroupList.push(jobGroup);
+    }
+
+    @action
     deleteCompany(url: string) {
         this._companyList = this.companyList.filter((company) => {
             return url !== company.url;

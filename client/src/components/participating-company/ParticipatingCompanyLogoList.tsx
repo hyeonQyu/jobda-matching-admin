@@ -5,12 +5,12 @@ import ParticipatingCompanyLogo from '@components/participating-company/Particip
 import { useStore } from '@contexts/StoreContext';
 import { observer } from 'mobx-react';
 import CardAdd from '@components/common/card-add/CardAdd';
-import NewCompanyForm from '@components/common/new-company-form/NewCompanyForm';
+import CardAddForm from '@components/common/card-add-form/CardAddForm';
 
 const ParticipatingCompanyLogoList = observer(() => {
     const { store, companyEditStore } = useStore();
     const { companyList, isEditMode } = store;
-    const { startEdit, isEditing } = companyEditStore;
+    const { startEdit, isEditing, name, setName, addCompany, finishEdit } = companyEditStore;
 
     return (
         <>
@@ -22,7 +22,9 @@ const ParticipatingCompanyLogoList = observer(() => {
                 {isEditMode && !isEditing && <CardAdd onClick={startEdit} />}
             </div>
 
-            {isEditMode && isEditing && <NewCompanyForm />}
+            {isEditMode && isEditing && (
+                <CardAddForm text={name} setText={setName} placeholder={'회사명 입력'} onSubmit={addCompany} onCancel={finishEdit} />
+            )}
         </>
     );
 });
