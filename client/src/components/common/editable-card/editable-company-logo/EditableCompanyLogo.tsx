@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react';
-import style from './EditableCompanyLogo.scss';
+import style from '../EditableCard.scss';
 import classNames from 'classnames';
 import { useStore } from '@contexts/StoreContext';
 import { CompanyInfo } from '@models/CompanyInfo';
+import useEditableCard from '@components/common/editable-card/useEditableCard';
 
 export interface EditableCompanyLogoProps {
     company: CompanyInfo;
@@ -12,12 +13,10 @@ export interface EditableCompanyLogoProps {
 const EditableCompanyLogo = observer((props: EditableCompanyLogoProps) => {
     const { company } = props;
     const { imgSrc, url } = company;
-    const [showMask, setShowMask] = useState(false);
+    const { onMouseEnter, onMouseLeave, showMask } = useEditableCard();
     const { companyEditStore } = useStore();
     const { deleteCompany } = companyEditStore;
 
-    const onMouseEnter = () => setShowMask(true);
-    const onMouseLeave = () => setShowMask(false);
     const onClickDelete = () => deleteCompany(url);
 
     return (

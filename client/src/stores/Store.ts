@@ -46,6 +46,13 @@ export default class Store {
     }
 
     @action
+    deleteJobGroup(name: string) {
+        this._jobGroupList = this.jobGroupList.filter((jobGroup) => {
+            return jobGroup.name !== name;
+        });
+    }
+
+    @action
     async load() {
         const { data } = await Request.load();
         const { companyList, jobGroupList } = data;

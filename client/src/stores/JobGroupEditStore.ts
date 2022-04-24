@@ -31,6 +31,11 @@ export default class JobGroupEditStore extends EditStore {
     }
 
     @action
+    deleteJobGroup(name: string) {
+        this._store.deleteJobGroup(name);
+    }
+
+    @action
     finishEdit() {
         this._isEditing = false;
         this.setJobGroupName('');

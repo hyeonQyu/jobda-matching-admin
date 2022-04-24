@@ -8,6 +8,21 @@
   transition: 0.5s;
   position: relative;
 
+  &.job_group {
+    background-color: #E7E8EA;
+    margin: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 8px;
+
+    p {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+
   img {
     width: 100%;
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import style from '@styles/union.scss';
 import { CompanyInfo } from '@models/CompanyInfo';
 import { useStore } from '@contexts/StoreContext';
-import EditableCompanyLogo from '@components/common/editable-company-logo/EditableCompanyLogo';
+import EditableCompanyLogo from '@components/common/editable-card/editable-company-logo/EditableCompanyLogo';
 
 export interface ParticipatingCompanyLogoProps {
     company: CompanyInfo;
