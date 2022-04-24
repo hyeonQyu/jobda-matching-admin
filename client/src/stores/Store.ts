@@ -57,6 +57,11 @@ export default class Store {
     }
 
     @action
+    addSuccessStory(successStory: SuccessStoryInfo) {
+        this._successStoryList.push(successStory);
+    }
+
+    @action
     deleteCompany(url: string) {
         this._companyList = this.companyList.filter((company) => {
             return url !== company.url;
@@ -67,6 +72,18 @@ export default class Store {
     deleteJobGroup(name: string) {
         this._jobGroupList = this.jobGroupList.filter((jobGroup) => {
             return jobGroup.name !== name;
+        });
+    }
+
+    @action
+    deleteSuccessStory(successStory: SuccessStoryInfo) {
+        this._successStoryList = this.successStoryList.filter(({ title, userId, companyName, description }) => {
+            return (
+                title !== successStory.title ||
+                userId !== successStory.userId ||
+                companyName !== successStory.companyName ||
+                description !== successStory.description
+            );
         });
     }
 

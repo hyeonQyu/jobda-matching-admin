@@ -5,12 +5,15 @@ import classNames from 'classnames';
 import { useStore } from '@contexts/StoreContext';
 import SuccessStory from '@components/success-review/components/SuccessStory';
 import YoutubeVideo from '@components/success-review/components/YoutubeVideo';
+import SuccessStoryAdd from '@components/common/success-story-add/SuccessStoryAdd';
+import SuccessStoryAddForm from '@components/common/success-story-add-form/SuccessStoryAddForm';
 
 export interface SuccessReviewProps {}
 
 const SuccessReview = observer((props: SuccessReviewProps) => {
-    const { store } = useStore();
-    const { successStoryList, youtubeVideoSrcList } = store;
+    const { store, successReviewEditStore } = useStore();
+    const { isEditMode, successStoryList, youtubeVideoSrcList } = store;
+    const { isEditingSuccessStory } = successReviewEditStore;
 
     return (
         <div id={'jmf_body_sec03'} className={style.jmf_body_sec03}>
@@ -20,6 +23,8 @@ const SuccessReview = observer((props: SuccessReviewProps) => {
                 {successStoryList.map((story) => (
                     <SuccessStory successStory={story} />
                 ))}
+                {isEditMode && !isEditingSuccessStory && <SuccessStoryAdd />}
+                {isEditMode && isEditingSuccessStory && <SuccessStoryAddForm />}
 
                 {youtubeVideoSrcList.map((src) => (
                     <YoutubeVideo videoSrc={src} />

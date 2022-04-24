@@ -24,7 +24,6 @@ export default class JobGroupEditStore {
         recruitNoticeUrl: '',
     };
 
-    @observable
     private readonly _store: Store;
 
     constructor(store: Store) {
