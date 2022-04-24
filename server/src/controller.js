@@ -22,6 +22,7 @@ module.exports = {
                 companyList: null,
                 jobGroupList: null,
                 successStoryList: null,
+                youtubeVideoSrcList: null,
             };
 
             for (const key in data) {

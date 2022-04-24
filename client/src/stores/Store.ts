@@ -11,6 +11,7 @@ export default class Store {
     @observable private _companyList: CompanyInfo[] = [];
     @observable private _jobGroupList: JobGroupInfo[] = [];
     @observable private _successStoryList: SuccessStoryInfo[] = [];
+    @observable private _youtubeVideoSrcList: string[] = [];
 
     @observable private _isEditMode: boolean = true;
 
@@ -24,6 +25,10 @@ export default class Store {
 
     get successStoryList(): SuccessStoryInfo[] {
         return this._successStoryList;
+    }
+
+    get youtubeVideoSrcList(): string[] {
+        return this._youtubeVideoSrcList;
     }
 
     get isEditMode(): boolean {
@@ -81,21 +86,23 @@ export default class Store {
     @action
     async load() {
         const { data } = await Request.load();
-        const { companyList, jobGroupList, successStoryList } = data;
+        const { companyList, jobGroupList, successStoryList, youtubeVideoSrcList } = data;
 
         this._companyList = companyList;
         this._jobGroupList = jobGroupList;
         this._successStoryList = successStoryList;
+        this._youtubeVideoSrcList = youtubeVideoSrcList;
     }
 
     @action
     async save() {
-        const { jobGroupList, companyList, successStoryList } = this;
+        const { jobGroupList, companyList, successStoryList, youtubeVideoSrcList } = this;
 
         const { data } = await Request.save({
             companyList,
             jobGroupList,
             successStoryList,
+            youtubeVideoSrcList,
         });
 
         if (data) {

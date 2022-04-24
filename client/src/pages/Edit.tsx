@@ -12,8 +12,8 @@ const Edit = () => {
             <div className={style.jmf_body}>
                 <ParticipatingCompany />
                 <JobGroup />
+                <SuccessReview />
             </div>
-            <SuccessReview />
         </div>
     );
 };

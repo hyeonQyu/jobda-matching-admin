@@ -6,4 +6,5 @@ export interface UnionDataVO {
     companyList: CompanyInfo[];
     jobGroupList: JobGroupInfo[];
     successStoryList: SuccessStoryInfo[];
+    youtubeVideoSrcList: string[];
 }
