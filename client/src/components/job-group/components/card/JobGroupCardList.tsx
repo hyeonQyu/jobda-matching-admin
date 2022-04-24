@@ -12,7 +12,7 @@ import CardAddForm from '@components/common/card-add-form/CardAddForm';
 const JobGroupCardList = observer(() => {
     const { store, jobGroupEditStore } = useStore();
     const { jobGroupList, isEditMode } = store;
-    const { startEdit, isEditing, jobGroupName, setJobGroupName, addJobGroup, finishEdit } = jobGroupEditStore;
+    const { startEditJobGroup, isEditingJobGroup, jobGroupName, setJobGroupName, addJobGroup, finishEditJobGroup } = jobGroupEditStore;
     const { withDigitLength } = useNumberFormat();
 
     return (
@@ -23,11 +23,17 @@ const JobGroupCardList = observer(() => {
                     <JobGroupCard href={`#job_type${withDigitLength(index, 2)}`} jobGroup={jobGroup} key={jobGroup.name} />
                 ))}
 
-                {isEditMode && <CardAdd onClick={startEdit} />}
+                {isEditMode && !isEditingJobGroup && <CardAdd onClick={startEditJobGroup} />}
             </div>
 
-            {isEditMode && isEditing && (
-                <CardAddForm text={jobGroupName} setText={setJobGroupName} placeholder={'직군 입력'} onSubmit={addJobGroup} onCancel={finishEdit} />
+            {isEditMode && isEditingJobGroup && (
+                <CardAddForm
+                    text={jobGroupName}
+                    setText={setJobGroupName}
+                    placeholder={'직군 입력'}
+                    onSubmit={addJobGroup}
+                    onCancel={finishEditJobGroup}
+                />
             )}
         </>
     );

@@ -36,15 +36,17 @@
         transition: 0.5s;
         cursor: pointer;
 
-        &:hover {
-          background-color: #40994e;
-        }
-
         &.add {
           background-color: #52C564;
+          &:hover {
+            background-color: #40994e;
+          }
         }
         &.cancel {
           background-color: #f3684e;
+          &:hover {
+            background-color: #cd5842;
+          }
         }
       }
     }

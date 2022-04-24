@@ -3,6 +3,7 @@ import style from '@styles/union.scss';
 import RecruitNoticeList from '@components/job-group/components/details/recruit-notice/RecruitNoticeList';
 import { JobGroupInfo } from '@models/JobGroupInfo';
 import classNames from 'classnames';
+import { useStore } from '@contexts/StoreContext';
 
 export interface JobGroupDetailsProps {
     jobGroup: JobGroupInfo;
@@ -11,7 +12,9 @@ export interface JobGroupDetailsProps {
 const JobGroupDetails = (props: JobGroupDetailsProps) => {
     const { jobGroup } = props;
     const { name, recruitNoticeList } = jobGroup;
-    const isEmpty = recruitNoticeList.length === 0;
+    const { store } = useStore();
+    const { isEditMode } = store;
+    const isEmpty = recruitNoticeList.length === 0 && !isEditMode;
 
     return (
         <details className={style.jmf_job_list}>
@@ -22,7 +25,7 @@ const JobGroupDetails = (props: JobGroupDetailsProps) => {
                 <span>({recruitNoticeList.length})</span>
             </summary>
 
-            <RecruitNoticeList recruitNoticeList={recruitNoticeList} />
+            <RecruitNoticeList jobGroup={jobGroup} />
         </details>
     );
 };

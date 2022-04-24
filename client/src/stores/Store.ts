@@ -3,6 +3,7 @@ import { action, observable } from 'mobx';
 import { CompanyInfo } from '@models/CompanyInfo';
 import { JobGroupInfo } from '@models/JobGroupInfo';
 import { Request } from '@requests/Request';
+import { RecruitNoticeInfo } from '@models/RecruitNoticeInfo';
 
 @autobind
 export default class Store {
@@ -36,6 +37,15 @@ export default class Store {
     @action
     addJobGroup(jobGroup: JobGroupInfo) {
         this._jobGroupList.push(jobGroup);
+    }
+
+    @action
+    addRecruitNotice(recruitNotice: RecruitNoticeInfo, jobGroupName: string) {
+        const newJobGroup: JobGroupInfo = this._jobGroupList.filter(({ name }) => name === jobGroupName)[0];
+        newJobGroup.recruitNoticeList.push(recruitNotice);
+        // this._jobGroupList = this.jobGroupList.map((jobGroup) => {
+        //     return jobGroup.name === newJobGroup.name ? newJobGroup : jobGroup;
+        // });
     }
 
     @action
