@@ -35,6 +35,10 @@ export default class Store {
         return this._isEditMode;
     }
 
+    setRecruitNoticeOfJobGroup(jobGroupIndex: number, recruitNoticeList: RecruitNoticeInfo[]) {
+        this.jobGroupList[jobGroupIndex].recruitNoticeList = recruitNoticeList;
+    }
+
     @action
     toggleEditMode() {
         this._isEditMode = !this.isEditMode;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Html from '@pages/Edit';
+import Html from '@pages/Html';
 import { observer } from 'mobx-react';
 import Store from '@stores/Store';
 import { StoreContext } from '@contexts/StoreContext';

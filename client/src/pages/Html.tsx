@@ -5,7 +5,7 @@ import ParticipatingCompany from '@components/participating-company/Participatin
 import JobGroup from '@components/job-group/JobGroup';
 import SuccessReview from '@components/success-review/SuccessReview';
 
-const Edit = () => {
+const Html = () => {
     return (
         <div className={style.jmf_wrap}>
             <Header />
@@ -18,4 +18,4 @@ const Edit = () => {
     );
 };
 
-export default Edit;
+export default Html;

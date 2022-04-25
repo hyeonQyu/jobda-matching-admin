@@ -6,6 +6,7 @@ import RecruitNoticeAdd from '@components/common/recruit-notice-add/RecruitNotic
 import { JobGroupInfo } from '@models/JobGroupInfo';
 import { observer } from 'mobx-react';
 import RecruitNoticeAddForm from '@components/common/recruit-notice-add-form/RecruitNoticeAddForm';
+import { Droppable } from 'react-beautiful-dnd';
 
 export interface RecruitNoticeListProps {
     jobGroup: JobGroupInfo;
@@ -20,9 +21,16 @@ const RecruitNoticeList = observer((props: RecruitNoticeListProps) => {
 
     return (
         <div className={style.job_type_list_wrap}>
-            {recruitNoticeList.map((recruitNotice) => (
-                <RecruitNotice key={recruitNotice.recruitNoticeUrl} recruitNotice={recruitNotice} jobGroupName={name} />
-            ))}
+            <Droppable droppableId={name}>
+                {(provided) => (
+                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                        {recruitNoticeList.map((recruitNotice, index) => (
+                            <RecruitNotice key={recruitNotice.recruitNoticeUrl} recruitNotice={recruitNotice} jobGroupName={name} index={index} />
+                        ))}
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
 
             {isEditMode && (!isEditingRecruitNotice || editingJobGroupNameOfRecruitNotice !== name) && <RecruitNoticeAdd jobGroupName={name} />}
 
