@@ -14,6 +14,9 @@ export default class SuccessReviewEditStore {
         description: '',
     };
 
+    @observable private _isEditingYoutubeVideo: boolean = false;
+    @observable private _youtubeVideoSrc: string = '';
+
     private readonly _store: Store;
 
     constructor(store: Store) {
@@ -26,6 +29,14 @@ export default class SuccessReviewEditStore {
 
     get successStory(): SuccessStoryInfo {
         return this._successStory;
+    }
+
+    get isEditingYoutubeVideo(): boolean {
+        return this._isEditingYoutubeVideo;
+    }
+
+    get youtubeVideoSrc(): string {
+        return this._youtubeVideoSrc;
     }
 
     @action
@@ -79,5 +90,32 @@ export default class SuccessReviewEditStore {
             companyImgSrc: '',
             description: '',
         };
+    }
+
+    @action
+    startEditYoutubeVideo() {
+        this._isEditingYoutubeVideo = true;
+    }
+
+    @action
+    setYoutubeVideoSrc(videoSrc: string) {
+        this._youtubeVideoSrc = videoSrc;
+    }
+
+    @action
+    addYoutubeVideo() {
+        this._store.addYoutubeVideo(this.youtubeVideoSrc);
+        this.finishEditYoutubeVideo();
+    }
+
+    @action
+    deleteYoutubeVideo(videoSrc: string) {
+        this._store.deleteYoutubeVideo(videoSrc);
+    }
+
+    @action
+    finishEditYoutubeVideo() {
+        this._isEditingYoutubeVideo = false;
+        this.setYoutubeVideoSrc('');
     }
 }

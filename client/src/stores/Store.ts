@@ -62,6 +62,11 @@ export default class Store {
     }
 
     @action
+    addYoutubeVideo(videoSrc: string) {
+        this._youtubeVideoSrcList.push(videoSrc);
+    }
+
+    @action
     deleteCompany(url: string) {
         this._companyList = this.companyList.filter((company) => {
             return url !== company.url;
@@ -73,6 +78,19 @@ export default class Store {
         this._jobGroupList = this.jobGroupList.filter((jobGroup) => {
             return jobGroup.name !== name;
         });
+    }
+
+    @action
+    deleteRecruitNotice(jobGroupName: string, recruitNoticeUrl: string) {
+        for (let i = 0; i < this.jobGroupList.length; i++) {
+            const jobGroup = this.jobGroupList[i];
+            if (jobGroup.name === jobGroupName) {
+                jobGroup.recruitNoticeList = jobGroup.recruitNoticeList.filter((recruitNotice) => {
+                    return recruitNotice.recruitNoticeUrl !== recruitNoticeUrl;
+                });
+                return;
+            }
+        }
     }
 
     @action
@@ -88,16 +106,8 @@ export default class Store {
     }
 
     @action
-    deleteRecruitNotice(jobGroupName: string, recruitNoticeUrl: string) {
-        for (let i = 0; i < this.jobGroupList.length; i++) {
-            const jobGroup = this.jobGroupList[i];
-            if (jobGroup.name === jobGroupName) {
-                jobGroup.recruitNoticeList = jobGroup.recruitNoticeList.filter((recruitNotice) => {
-                    return recruitNotice.recruitNoticeUrl !== recruitNoticeUrl;
-                });
-                return;
-            }
-        }
+    deleteYoutubeVideo(videoSrc: string) {
+        this._youtubeVideoSrcList = this.youtubeVideoSrcList.filter((src) => src !== videoSrc);
     }
 
     @action

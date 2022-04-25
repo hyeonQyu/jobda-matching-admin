@@ -1,0 +1,35 @@
+.wrapper {
+  width: 40%;
+  height: 100px;
+  margin: 20px auto 0 auto;
+  background: #52C564;
+  border-radius: 8px;
+  transition: .5s;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background-color: #40994e;
+  }
+
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    background: white;
+    border-radius: 5px;
+  }
+
+  &:before {
+    width: 50px;
+    height: 8px;
+    top: calc(50% - 4px);
+    right: calc(50% - 25px);
+  }
+
+  &:after {
+    width: 8px;
+    height: 50px;
+    top: calc(50% - 25px);
+    right: calc(50% - 4px);
+  }
+}

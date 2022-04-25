@@ -7,13 +7,15 @@ import SuccessStory from '@components/success-review/components/SuccessStory';
 import YoutubeVideo from '@components/success-review/components/YoutubeVideo';
 import SuccessStoryAdd from '@components/common/success-story-add/SuccessStoryAdd';
 import SuccessStoryAddForm from '@components/common/success-story-add-form/SuccessStoryAddForm';
+import YoutubeVideoAdd from '@components/common/youtube-video-add/YoutubeVideoAdd';
+import YoutubeVideoAddForm from '@components/common/youtube-video-add-form/YoutubeVideoAddForm';
 
 export interface SuccessReviewProps {}
 
 const SuccessReview = observer((props: SuccessReviewProps) => {
     const { store, successReviewEditStore } = useStore();
     const { isEditMode, successStoryList, youtubeVideoSrcList } = store;
-    const { isEditingSuccessStory } = successReviewEditStore;
+    const { isEditingSuccessStory, isEditingYoutubeVideo } = successReviewEditStore;
 
     return (
         <div id={'jmf_body_sec03'} className={style.jmf_body_sec03}>
@@ -29,6 +31,8 @@ const SuccessReview = observer((props: SuccessReviewProps) => {
                 {youtubeVideoSrcList.map((src) => (
                     <YoutubeVideo videoSrc={src} />
                 ))}
+                {isEditMode && !isEditingYoutubeVideo && <YoutubeVideoAdd />}
+                {isEditMode && isEditingYoutubeVideo && <YoutubeVideoAddForm />}
             </div>
         </div>
     );
