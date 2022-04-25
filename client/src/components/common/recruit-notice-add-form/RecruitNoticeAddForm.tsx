@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import style from './RecruitNoticeAddForm.scss';
 import { useStore } from '@contexts/StoreContext';
 import useInput from '@hooks/useInput';
+import useInputFocus from '@hooks/useInputFocus';
 
 export interface RecruitNoticeAddFormProps {}
 
@@ -23,6 +24,7 @@ const RecruitNoticeAddForm = observer((props: RecruitNoticeAddFormProps) => {
         finishEditRecruitNotice,
     } = jobGroupEditStore;
     const { title, job, companyName, location, recruitNoticeUrl, recruitSectorName, registrationDatetime } = recruitNotice;
+    const { ref } = useInputFocus();
 
     const inputTitle = useInput({
         value: title,
@@ -71,7 +73,7 @@ const RecruitNoticeAddForm = observer((props: RecruitNoticeAddFormProps) => {
             >
                 <div className={style.form_section}>
                     <div>
-                        <input placeholder={'채용 공고 제목'} required {...inputTitle} />
+                        <input placeholder={'채용 공고 제목'} required {...inputTitle} ref={ref} />
                         <input placeholder={'직무'} required {...inputJob} />
                         <div className={style.input_wrapper}>
                             <input className={style.flex} placeholder={'회사명'} required {...inputCompanyName} />

@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import style from './SuccessStoryAddForm.scss';
 import { useStore } from '@contexts/StoreContext';
 import useInput from '@hooks/useInput';
+import useInputFocus from '@hooks/useInputFocus';
 
 export interface SuccessStoryAddFormProps {}
 
@@ -19,6 +20,7 @@ const SuccessStoryAddForm = observer((props: SuccessStoryAddFormProps) => {
         finishEditSuccessStory,
     } = successReviewEditStore;
     const { title, userId, companyImgSrc, companyName, description } = successStory;
+    const { ref } = useInputFocus();
 
     const inputTitle = useInput({
         value: title,
@@ -49,7 +51,7 @@ const SuccessStoryAddForm = observer((props: SuccessStoryAddFormProps) => {
                     addSuccessStory();
                 }}
             >
-                <input placeholder={'제목'} {...inputTitle} required />
+                <input placeholder={'제목'} {...inputTitle} required ref={ref} />
                 <div className={style.flex}>
                     <input placeholder={'사용자 아이디'} {...inputUserId} required />
                     <input placeholder={'회사 로고 URL'} {...inputCompanyImgSrc} required />
