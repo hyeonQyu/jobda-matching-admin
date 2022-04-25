@@ -37,7 +37,7 @@ const EditableSuccessStory = observer((props: EditableSuccessStoryProps) => {
             {showMask && (
                 <>
                     <div className={classNames(style2.mask)} />
-                    <button className={style2.success_story} onClick={onClickDelete}>
+                    <button className={style2.big} onClick={onClickDelete}>
                         삭제
                     </button>
                 </>

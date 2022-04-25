@@ -23,13 +23,13 @@ const SuccessReview = observer((props: SuccessReviewProps) => {
 
             <div className={style.jmf_story_wrap}>
                 {successStoryList.map((story) => (
-                    <SuccessStory successStory={story} />
+                    <SuccessStory key={Math.random()} successStory={story} />
                 ))}
                 {isEditMode && !isEditingSuccessStory && <SuccessStoryAdd />}
                 {isEditMode && isEditingSuccessStory && <SuccessStoryAddForm />}
 
                 {youtubeVideoSrcList.map((src) => (
-                    <YoutubeVideo videoSrc={src} />
+                    <YoutubeVideo key={src} videoSrc={src} />
                 ))}
                 {isEditMode && !isEditingYoutubeVideo && <YoutubeVideoAdd />}
                 {isEditMode && isEditingYoutubeVideo && <YoutubeVideoAddForm />}
