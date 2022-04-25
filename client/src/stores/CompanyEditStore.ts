@@ -5,26 +5,36 @@ import EditStore from '@stores/EditStore';
 
 @autobind
 export default class CompanyEditStore extends EditStore {
-    @observable private _name: string = '';
+    @observable private _nameOfJobda: string = '';
+    @observable private _nameOfImage: string = '';
 
     constructor(store: Store) {
         super(store);
     }
 
-    get name(): string {
-        return this._name;
+    get nameOfJobda(): string {
+        return this._nameOfJobda;
+    }
+
+    get nameOfImage(): string {
+        return this._nameOfImage;
     }
 
     @action
-    setName(name: string) {
-        this._name = name;
+    setNameOfJobda(name: string) {
+        this._nameOfJobda = name;
+    }
+
+    @action
+    setNameOfImage(name: string) {
+        this._nameOfImage = name;
     }
 
     @action
     addCompany() {
         this._store.addCompany({
-            url: `https://www.jobda.im/match/position?keyword=${this.name}`,
-            imgSrc: `https://www.midashri.com/hubfs/${new Date().getFullYear()}JMF/logo/${this.name}.png`,
+            url: `https://www.jobda.im/match/position?keyword=${this.nameOfJobda}`,
+            imgSrc: `https://www.midashri.com/hubfs/${new Date().getFullYear()}JMF/logo/${this.nameOfImage || this.nameOfJobda}.png`,
         });
 
         this.finishEdit();
@@ -38,6 +48,7 @@ export default class CompanyEditStore extends EditStore {
     @action
     finishEdit() {
         this._isEditing = false;
-        this.setName('');
+        this.setNameOfJobda('');
+        this.setNameOfImage('');
     }
 }

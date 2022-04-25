@@ -10,7 +10,7 @@ import CardAddForm from '@components/common/card-add-form/CardAddForm';
 const ParticipatingCompanyLogoList = observer(() => {
     const { store, companyEditStore } = useStore();
     const { companyList, isEditMode } = store;
-    const { startEdit, isEditing, name, setName, addCompany, finishEdit } = companyEditStore;
+    const { startEdit, isEditing, nameOfJobda, nameOfImage, setNameOfJobda, setNameOfImage, addCompany, finishEdit } = companyEditStore;
 
     return (
         <>
@@ -23,7 +23,16 @@ const ParticipatingCompanyLogoList = observer(() => {
             </div>
 
             {isEditMode && isEditing && (
-                <CardAddForm text={name} setText={setName} placeholder={'회사명 입력'} onSubmit={addCompany} onCancel={finishEdit} />
+                <CardAddForm
+                    text={nameOfJobda}
+                    setText={setNameOfJobda}
+                    placeholder={'(잡다)회사명 입력'}
+                    text2={nameOfImage}
+                    setText2={setNameOfImage}
+                    placeholder2={'(이미지)회사명 입력'}
+                    onSubmit={addCompany}
+                    onCancel={finishEdit}
+                />
             )}
         </>
     );
