@@ -1,0 +1,23 @@
+.wrapper {
+  height: 100%;
+  border-right: 1px solid #d5d5d5;
+  padding-top: 250px;
+  position: relative;
+
+  .button_wrapper {
+    position: fixed;
+    width: 20%;
+
+    .button {
+      width: 100%;
+      padding: 15px 12px;
+      transition: .5s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f1f1f1;
+        font-size: 150%;
+      }
+    }
+  }
+}

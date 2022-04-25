@@ -36,8 +36,8 @@ export default class Store {
     }
 
     @action
-    setIsEditMode(isEdit: boolean) {
-        this._isEditMode = isEdit;
+    toggleEditMode() {
+        this._isEditMode = !this.isEditMode;
     }
 
     @action

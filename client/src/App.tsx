@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Edit from '@pages/Edit';
+import Html from '@pages/Edit';
 import { observer } from 'mobx-react';
 import Store from '@stores/Store';
 import { StoreContext } from '@contexts/StoreContext';
 import CompanyEditStore from '@stores/CompanyEditStore';
 import JobGroupEditStore from '@stores/JobGroupEditStore';
 import SuccessReviewEditStore from '@stores/SuccessReviewEditStore';
+import Layout from '@components/layout/Layout';
 
 const App = observer(() => {
     const [store] = useState(new Store());
@@ -19,7 +20,9 @@ const App = observer(() => {
 
     return (
         <StoreContext.Provider value={{ store, companyEditStore, jobGroupEditStore, successReviewEditStore }}>
-            <Edit />
+            <Layout>
+                <Html />
+            </Layout>
         </StoreContext.Provider>
     );
 });
