@@ -32,10 +32,10 @@ const CardAddForm = observer((props: CardAddFormProps) => {
                         {placeholder2 && <input placeholder={placeholder2} value={text2} onChange={(e) => setText2(e.target.value)} />}
                     </div>
                     <div className={style.button_wrapper}>
-                        <button className={style.add}>추가</button>
                         <button type={'button'} onClick={onCancel} className={style.cancel}>
                             취소
                         </button>
+                        <button className={style.add}>추가</button>
                     </div>
                 </div>
             </form>

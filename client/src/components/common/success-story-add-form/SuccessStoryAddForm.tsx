@@ -64,10 +64,10 @@ const SuccessStoryAddForm = observer((props: SuccessStoryAddFormProps) => {
                     <textarea placeholder={'내용'} {...inputDescription} required />
                 </div>
                 <div className={style.button_wrapper}>
-                    <button className={style.add}>추가</button>
                     <button type={'button'} className={style.cancel} onClick={finishEditSuccessStory}>
                         취소
                     </button>
+                    <button className={style.add}>추가</button>
                 </div>
             </form>
         </div>

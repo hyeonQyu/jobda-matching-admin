@@ -93,10 +93,10 @@ const RecruitNoticeAddForm = observer((props: RecruitNoticeAddFormProps) => {
 
                 <input placeholder={'공고 URL'} required {...inputUrl} />
                 <div className={style.button_section}>
-                    <button className={style.add}>추가</button>
                     <button className={style.cancel} type={'button'} onClick={finishEditRecruitNotice}>
                         취소
                     </button>
+                    <button className={style.add}>추가</button>
                 </div>
             </form>
         </div>
