@@ -8,4 +8,5 @@ export interface RecruitNoticeInfo {
     location: string;
     registrationDatetime: Datetime;
     recruitNoticeUrl: string;
+    isNew: boolean;
 }

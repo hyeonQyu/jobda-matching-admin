@@ -22,6 +22,7 @@ export default class JobGroupEditStore {
             date: 0,
         },
         recruitNoticeUrl: '',
+        isNew: true,
     };
 
     private readonly _store: Store;
@@ -162,6 +163,7 @@ export default class JobGroupEditStore {
                 date: 0,
             },
             recruitNoticeUrl: '',
+            isNew: true,
         };
     }
 

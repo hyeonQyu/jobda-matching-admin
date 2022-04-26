@@ -14,7 +14,7 @@ export interface RecruitNoticeProps {
 
 const RecruitNotice = (props: RecruitNoticeProps) => {
     const { recruitNotice, index } = props;
-    const { recruitSectorName, recruitNoticeUrl, companyName, job, location, registrationDatetime, title } = recruitNotice;
+    const { recruitSectorName, recruitNoticeUrl, companyName, job, location, registrationDatetime, title, isNew } = recruitNotice;
     const { datetimeFormat } = useDatetime({ datetime: registrationDatetime });
     const { store } = useStore();
     const { isEditMode } = store;
@@ -32,7 +32,7 @@ const RecruitNotice = (props: RecruitNoticeProps) => {
             <div className={style.job_type_item_wrap}>
                 <div className={style.job_type_list_title}>
                     {title}
-                    <span className={style.jmf_new_tag}>N</span>
+                    {isNew && <span className={style.jmf_new_tag}>N</span>}
                 </div>
 
                 <div className={style.job_type_type}>{job}</div>

@@ -115,6 +115,17 @@ export default class Store {
     }
 
     @action
+    checkIsRecruitNoticeNew(jobGroupName: string, recruitNoticeIndex: number) {
+        for (let i = 0; i < this.jobGroupList.length; i++) {
+            const jobGroup = this.jobGroupList[i];
+            if (jobGroup.name === jobGroupName) {
+                const recruitNotice = jobGroup.recruitNoticeList[recruitNoticeIndex];
+                recruitNotice.isNew = !recruitNotice.isNew;
+            }
+        }
+    }
+
+    @action
     async load() {
         const { data } = await Request.load();
         const { companyList, jobGroupList, successStoryList, youtubeVideoSrcList } = data;

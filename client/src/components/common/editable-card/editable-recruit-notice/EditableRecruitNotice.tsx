@@ -7,21 +7,25 @@ import useEditableCard from '@components/common/editable-card/useEditableCard';
 import { RecruitNoticeInfo } from '@models/RecruitNoticeInfo';
 import useDatetime from '@hooks/useDatetime';
 import { useStore } from '@contexts/StoreContext';
+import Checkbox from '@components/common/checkbox/Checkbox';
 
 export interface EditableRecruitNoticeProps {
     jobGroupName: string;
     recruitNotice: RecruitNoticeInfo;
+    index: number;
 }
 
 const EditableRecruitNotice = observer((props: EditableRecruitNoticeProps) => {
-    const { jobGroupName, recruitNotice } = props;
+    const { jobGroupName, recruitNotice, index } = props;
     const { onMouseEnter, onMouseLeave, showMask } = useEditableCard();
-    const { title, job, recruitNoticeUrl, recruitSectorName, companyName, registrationDatetime, location } = recruitNotice;
+    const { title, job, recruitNoticeUrl, recruitSectorName, companyName, registrationDatetime, location, isNew } = recruitNotice;
     const { datetimeFormat } = useDatetime({ datetime: registrationDatetime });
-    const { jobGroupEditStore } = useStore();
+    const { jobGroupEditStore, store } = useStore();
     const { deleteRecruitNotice } = jobGroupEditStore;
+    const { checkIsRecruitNoticeNew } = store;
 
     const onClickDelete = () => deleteRecruitNotice(jobGroupName, recruitNoticeUrl);
+    const toggleIsNew = () => checkIsRecruitNoticeNew(jobGroupName, index);
 
     return (
         <div
@@ -32,7 +36,7 @@ const EditableRecruitNotice = observer((props: EditableRecruitNoticeProps) => {
             <div className={style2.job_type_item_wrap}>
                 <div className={style2.job_type_list_title}>
                     {title}
-                    <span className={style2.jmf_new_tag}>N</span>
+                    {isNew && <span className={style2.jmf_new_tag}>N</span>}
                 </div>
 
                 <div className={style2.job_type_type}>{job}</div>
@@ -50,7 +54,12 @@ const EditableRecruitNotice = observer((props: EditableRecruitNoticeProps) => {
             {showMask && (
                 <>
                     <div className={classNames(style.mask)} />
-                    <button onClick={onClickDelete}>삭제</button>
+                    <div className={style.button_wrapper}>
+                        <button onClick={onClickDelete}>삭제</button>
+                        <Checkbox className={style.checkbox} checked={isNew} size={1.5} onChange={toggleIsNew}>
+                            <p>새 공고 여부</p>
+                        </Checkbox>
+                    </div>
                 </>
             )}
         </div>
