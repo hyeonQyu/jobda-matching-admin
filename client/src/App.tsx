@@ -7,12 +7,14 @@ import CompanyEditStore from '@stores/CompanyEditStore';
 import JobGroupEditStore from '@stores/JobGroupEditStore';
 import SuccessReviewEditStore from '@stores/SuccessReviewEditStore';
 import Layout from '@components/layout/Layout';
+import useShortcuts from '@hooks/useShortcuts';
 
 const App = observer(() => {
     const [store] = useState(new Store());
     const [companyEditStore] = useState(new CompanyEditStore(store));
     const [jobGroupEditStore] = useState(new JobGroupEditStore(store));
     const [successReviewEditStore] = useState(new SuccessReviewEditStore(store));
+    useShortcuts({ store });
 
     useEffect(() => {
         store.load();
