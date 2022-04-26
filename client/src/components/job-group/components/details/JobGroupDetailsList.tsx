@@ -43,8 +43,8 @@ const JobGroupDetailsList = observer(() => {
     return (
         <div>
             <DragDropContext onDragEnd={onDragEnd}>
-                {jobGroupList.map((jobGroup) => (
-                    <JobGroupDetails jobGroup={jobGroup} key={jobGroup.name} />
+                {jobGroupList.map((jobGroup, i) => (
+                    <JobGroupDetails jobGroup={jobGroup} key={jobGroup.name} index={i + 1} />
                 ))}
             </DragDropContext>
         </div>
