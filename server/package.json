@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index",
-    "build": "pkg . --output ../out/jmf-server.exe"
+    "build": "pkg . --output ../jmf-admin/jmf-server.exe"
   },
   "pkg": {
     "scripts": "*.js",
