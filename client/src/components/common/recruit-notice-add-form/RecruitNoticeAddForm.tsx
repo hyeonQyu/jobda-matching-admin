@@ -4,11 +4,12 @@ import style from './RecruitNoticeAddForm.scss';
 import { useStore } from '@contexts/StoreContext';
 import useInput from '@hooks/useInput';
 import useInputFocus from '@hooks/useInputFocus';
+import SelectBox, { SelectOption } from '@components/common/select-box/SelectBox';
 
 export interface RecruitNoticeAddFormProps {}
 
 const RecruitNoticeAddForm = observer((props: RecruitNoticeAddFormProps) => {
-    const { jobGroupEditStore } = useStore();
+    const { jobGroupEditStore, store } = useStore();
     const {
         recruitNotice,
         setRecruitNoticeTitle,
@@ -23,6 +24,7 @@ const RecruitNoticeAddForm = observer((props: RecruitNoticeAddFormProps) => {
         addRecruitNotice,
         finishEditRecruitNotice,
     } = jobGroupEditStore;
+    const { companyList } = store;
     const { title, job, companyName, location, recruitNoticeUrl, recruitSectorName, registrationDatetime } = recruitNotice;
     const { ref } = useInputFocus();
 
@@ -63,6 +65,8 @@ const RecruitNoticeAddForm = observer((props: RecruitNoticeAddFormProps) => {
         setValue: setRecruitNoticeUrl,
     });
 
+    const companyOptions: SelectOption[] = companyList.map(({ name }) => ({ value: name, text: name }));
+
     return (
         <div className={style.wrapper}>
             <form
@@ -76,17 +80,28 @@ const RecruitNoticeAddForm = observer((props: RecruitNoticeAddFormProps) => {
                         <input placeholder={'채용 공고 제목'} required {...inputTitle} ref={ref} />
                         <input placeholder={'직무'} required {...inputJob} />
                         <div className={style.input_wrapper}>
-                            <input className={style.flex} placeholder={'회사명'} required {...inputCompanyName} />
-                            <input className={style.flex} placeholder={'채용 분야'} required {...inputRecruitSectorName} />
-                            <input className={style.flex} placeholder={'위치'} required {...inputLocation} />
+                            {/*<input className={style.flex} placeholder={'회사명'} required {...inputCompanyName} />*/}
+                            <input className={style.half} placeholder={'채용 분야'} required {...inputRecruitSectorName} />
+                            <input className={style.half} placeholder={'위치'} required {...inputLocation} />
                         </div>
                     </div>
 
                     <div className={style.registration_date}>
-                        <div className={style.input_wrapper}>
-                            <input className={style.flex} placeholder={'년'} type={'number'} required {...inputYear} style={{ width: '50%' }} />
-                            <input className={style.flex} placeholder={'월'} type={'number'} required {...inputMonth} />
-                            <input className={style.flex} placeholder={'일'} type={'number'} required {...inputDate} />
+                        <div className={style.right_wrapper}>
+                            <SelectBox
+                                options={companyOptions}
+                                maxOptionCountAtOnce={10}
+                                selectedValue={companyName}
+                                onSelect={(value) => setRecruitNoticeCompanyName(value as string)}
+                                boxMessage={'회사명'}
+                                searchPlaceholder={'회사명 검색'}
+                                optionHeight={30}
+                            />
+                            <div className={style.input_wrapper}>
+                                <input className={style.flex} placeholder={'년'} type={'number'} required {...inputYear} style={{ width: '50%' }} />
+                                <input className={style.flex} placeholder={'월'} type={'number'} required {...inputMonth} />
+                                <input className={style.flex} placeholder={'일'} type={'number'} required {...inputDate} />
+                            </div>
                         </div>
                     </div>
                 </div>

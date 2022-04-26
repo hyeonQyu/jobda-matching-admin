@@ -1,0 +1,117 @@
+.wrapper {
+  position: relative;
+  font-size: 13px;
+  font-weight: 400;
+  color: #1c252f;
+
+  &.disabled {
+    color: #ADB3C2;
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    .box {
+      background-color: #DBDEE8;
+      border: 2px solid #DBDEE8;
+      height: 32px;
+      cursor: not-allowed;
+
+      &:hover {
+        color: #ADB3C2;
+        background-color: #DBDEE8;
+        border: 2px solid #DBDEE8;
+      }
+    }
+  }
+
+  .box {
+    display: flex;
+    width: 100%;
+    height: 32px;
+    position: relative;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid #F1F3FB;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 3px 20px 3px 10px;
+    cursor: pointer;
+    line-height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: all linear .2s;
+
+    &:hover {
+      color: #1c252f;
+      border: 2px solid #E7EAF1;
+      background-color: #ffffff;
+    }
+
+    &.opened {
+      color: #1c252f;
+      border: 2px solid black;
+      background-color: #ffffff;
+    }
+
+    &.border-none {
+      border: none;
+    }
+
+    .text {
+      text-align: left;
+      line-height: initial;
+    }
+
+    .arrow {
+      position: absolute;
+      right: 3px;
+    }
+  }
+
+  .options {
+    position: absolute;
+    background: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 20%);
+    cursor: default;
+    z-index: 9999;
+    width: 100%;
+    border-radius: 8px;
+
+    &.upper {
+      bottom: calc(100% + 5px);
+    }
+
+    &.under {
+      top: calc(100% + 5px);
+    }
+
+    .search {
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7px 0 15px;
+
+      input {
+        width: calc(100% - 30px);
+        border: none;
+      }
+    }
+
+    .option {
+      padding: 2px 8px;
+      overflow: hidden;
+      white-space: nowrap;
+      line-height: 28px;
+      display: flex;
+
+      &.check-all {
+        border-bottom: 1px solid #E5E5E5;
+      }
+
+      &.selected, &:hover {
+        background: #EDEEF3;
+      }
+    }
+  }
+}

@@ -33,6 +33,7 @@ export default class CompanyEditStore extends EditStore {
     @action
     addCompany() {
         this._store.addCompany({
+            name: this.nameOfJobda,
             url: `https://www.jobda.im/match/position?keyword=${this.nameOfJobda}`,
             imgSrc: `https://www.midashri.com/hubfs/${new Date().getFullYear()}JMF/logo/${this.nameOfImage || this.nameOfJobda}.png`,
         });

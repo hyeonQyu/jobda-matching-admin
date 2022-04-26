@@ -16,8 +16,8 @@
       align-items: end;
       width: 80%;
 
-      .input_wrapper {
-        width: 90%;
+      .right_wrapper {
+        padding-left: 10%;
       }
     }
 
@@ -38,6 +38,10 @@
 
     &.flex {
       width: 33.33%;
+      justify-content: space-around;
+    }
+    &.half {
+      width: 50%;
       justify-content: space-around;
     }
   }
