@@ -137,6 +137,13 @@ export default class Store {
     }
 
     @action
+    async reset() {
+        if (confirm('수정사항을 버리고 처음으로 돌아가시겠어요?')) {
+            await this.load();
+        }
+    }
+
+    @action
     async save() {
         const { jobGroupList, companyList, successStoryList, youtubeVideoSrcList } = this;
 

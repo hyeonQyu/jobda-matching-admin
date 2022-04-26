@@ -5,7 +5,7 @@ import { useStore } from '@contexts/StoreContext';
 
 const Sidebar = observer(() => {
     const { store } = useStore();
-    const { load, save, toggleEditMode, isEditMode } = store;
+    const { reset, save, toggleEditMode, isEditMode } = store;
 
     return (
         <div className={style.wrapper}>
@@ -16,7 +16,7 @@ const Sidebar = observer(() => {
                 <div className={style.button} onClick={toggleEditMode}>
                     {isEditMode ? '미리보기' : '편집으로'}
                 </div>
-                <div className={style.button} onClick={load}>
+                <div className={style.button} onClick={reset}>
                     처음으로
                 </div>
             </div>
