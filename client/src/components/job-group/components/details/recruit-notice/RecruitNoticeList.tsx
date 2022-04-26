@@ -10,27 +10,40 @@ import { Droppable } from 'react-beautiful-dnd';
 
 export interface RecruitNoticeListProps {
     jobGroup: JobGroupInfo;
+    isDetailsOpened: boolean;
 }
 
 const RecruitNoticeList = observer((props: RecruitNoticeListProps) => {
-    const { jobGroup } = props;
+    const { jobGroup, isDetailsOpened } = props;
     const { recruitNoticeList, name } = jobGroup;
     const { store, jobGroupEditStore } = useStore();
     const { isEditMode } = store;
     const { isEditingRecruitNotice, editingJobGroupNameOfRecruitNotice } = jobGroupEditStore;
 
+    const list = recruitNoticeList.map((recruitNotice, index) => (
+        <RecruitNotice
+            key={recruitNotice.recruitNoticeUrl}
+            recruitNotice={recruitNotice}
+            jobGroupName={name}
+            index={index}
+            isDetailsOpened={isDetailsOpened}
+        />
+    ));
+
     return (
         <div className={style.job_type_list_wrap}>
-            <Droppable droppableId={name}>
-                {(provided) => (
-                    <div {...provided.droppableProps} ref={provided.innerRef}>
-                        {recruitNoticeList.map((recruitNotice, index) => (
-                            <RecruitNotice key={recruitNotice.recruitNoticeUrl} recruitNotice={recruitNotice} jobGroupName={name} index={index} />
-                        ))}
-                        {provided.placeholder}
-                    </div>
-                )}
-            </Droppable>
+            {isDetailsOpened ? (
+                <Droppable droppableId={name}>
+                    {(provided) => (
+                        <div {...provided.droppableProps} ref={provided.innerRef}>
+                            {list}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            ) : (
+                list
+            )}
 
             {isEditMode && (!isEditingRecruitNotice || editingJobGroupNameOfRecruitNotice !== name) && <RecruitNoticeAdd jobGroupName={name} />}
 

@@ -10,23 +10,28 @@ export interface RecruitNoticeProps {
     recruitNotice: RecruitNoticeInfo;
     jobGroupName: string;
     index: number;
+    isDetailsOpened: boolean;
 }
 
 const RecruitNotice = (props: RecruitNoticeProps) => {
-    const { recruitNotice, index } = props;
+    const { recruitNotice, index, isDetailsOpened } = props;
     const { recruitSectorName, recruitNoticeUrl, companyName, job, location, registrationDatetime, title, isNew } = recruitNotice;
     const { datetimeFormat } = useDatetime({ datetime: registrationDatetime });
     const { store } = useStore();
     const { isEditMode } = store;
 
     return isEditMode ? (
-        <Draggable draggableId={recruitNoticeUrl} index={index}>
-            {(provided) => (
-                <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                    <EditableRecruitNotice {...props} />
-                </div>
-            )}
-        </Draggable>
+        isDetailsOpened ? (
+            <Draggable draggableId={recruitNoticeUrl} index={index}>
+                {(provided) => (
+                    <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                        <EditableRecruitNotice {...props} />
+                    </div>
+                )}
+            </Draggable>
+        ) : (
+            <EditableRecruitNotice {...props} />
+        )
     ) : (
         <a href={recruitNoticeUrl} className={style.job_type_list_item} target={'_blank'}>
             <div className={style.job_type_item_wrap}>
