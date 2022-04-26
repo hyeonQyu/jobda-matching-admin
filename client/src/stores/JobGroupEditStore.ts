@@ -2,6 +2,7 @@ import { autobind } from 'core-decorators';
 import Store from '@stores/Store';
 import { action, observable } from 'mobx';
 import { RecruitNoticeInfo } from '@models/RecruitNoticeInfo';
+import { Request } from '@requests/Request';
 
 @autobind
 export default class JobGroupEditStore {
@@ -83,55 +84,6 @@ export default class JobGroupEditStore {
     }
 
     @action
-    setRecruitNoticeTitle(title: string) {
-        this._recruitNotice.title = title;
-    }
-
-    @action
-    setRecruitNoticeJob(job: string) {
-        this._recruitNotice.job = job;
-    }
-
-    @action
-    setRecruitNoticeCompanyName(name: string) {
-        this._recruitNotice.companyName = name;
-    }
-
-    @action
-    setRecruitNoticeRecruitSectorName(name: string) {
-        this._recruitNotice.recruitSectorName = name;
-    }
-
-    @action
-    setRecruitNoticeLocation(location: string) {
-        this._recruitNotice.location = location;
-    }
-
-    @action
-    setRecruitNoticeRegistrationDateYear(year: string) {
-        this._recruitNotice.registrationDatetime = {
-            ...this.recruitNotice.registrationDatetime,
-            year: parseInt(year),
-        };
-    }
-
-    @action
-    setRecruitNoticeRegistrationDateMonth(month: string) {
-        this._recruitNotice.registrationDatetime = {
-            ...this.recruitNotice.registrationDatetime,
-            month: parseInt(month),
-        };
-    }
-
-    @action
-    setRecruitNoticeRegistrationDateDate(date: string) {
-        this._recruitNotice.registrationDatetime = {
-            ...this.recruitNotice.registrationDatetime,
-            date: parseInt(date),
-        };
-    }
-
-    @action
     setRecruitNoticeUrl(url: string) {
         this._recruitNotice.recruitNoticeUrl = url;
     }
@@ -143,9 +95,14 @@ export default class JobGroupEditStore {
     }
 
     @action
-    addRecruitNotice() {
-        this._store.addRecruitNotice(this.recruitNotice, this.editingJobGroupNameOfRecruitNotice);
-        this.finishEditRecruitNotice();
+    async addRecruitNotice() {
+        try {
+            const { data } = await Request.getRecruitNoticeInfoByUrl(this.recruitNotice.recruitNoticeUrl);
+            this._store.addRecruitNotice(data, this.editingJobGroupNameOfRecruitNotice);
+            this.finishEditRecruitNotice();
+        } catch (e) {
+            alert('문제 발생.. 문의주세요ㅠ');
+        }
     }
 
     @action

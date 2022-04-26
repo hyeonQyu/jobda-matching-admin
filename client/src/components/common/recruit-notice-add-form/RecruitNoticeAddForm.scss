@@ -7,23 +7,8 @@
   border-radius: 8px;
   display: flex;
 
-  .form_section {
-    display: flex;
-
-    .registration_date {
-      display: flex;
-      justify-content: right;
-      align-items: end;
-      width: 80%;
-
-      .right_wrapper {
-        padding-left: 10%;
-      }
-    }
-
-    .input_wrapper {
-      display: flex;
-    }
+  form {
+    width: 100%;
   }
 
   input {
