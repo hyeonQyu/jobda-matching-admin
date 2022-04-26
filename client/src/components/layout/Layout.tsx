@@ -12,7 +12,7 @@ const Layout = observer((props: LayoutProps) => {
 
     return (
         <div className={style.wrapper}>
-            <div className={style.sidebar}>
+            <div id={'sidebar'} className={style.sidebar}>
                 <Sidebar />
             </div>
             {children}

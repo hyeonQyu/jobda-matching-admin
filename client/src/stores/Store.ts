@@ -147,17 +147,46 @@ export default class Store {
     async save() {
         const { jobGroupList, companyList, successStoryList, youtubeVideoSrcList } = this;
 
-        const { data } = await Request.save({
-            companyList,
-            jobGroupList,
-            successStoryList,
-            youtubeVideoSrcList,
-        });
+        try {
+            const { data } = await Request.save({
+                companyList,
+                jobGroupList,
+                successStoryList,
+                youtubeVideoSrcList,
+            });
 
-        if (data) {
-            alert('저장 성공');
+            if (data) {
+                alert('저장 성공');
+                return;
+            }
+            alert('저장 실패ㅠㅠ 문의주세용..');
+        } catch (e) {
+            alert('서버를 켰는지 확인하세요!! 켰는데도 이러면 문의주세요....');
+        }
+    }
+
+    @action
+    async extractHtml() {
+        if (this.isEditMode) {
+            if (confirm('HTML 파일로 추출하기 기능은 미리보기 화면에서 해주세요.')) {
+                this._isEditMode = false;
+            }
             return;
         }
-        alert('저장 실패ㅠㅠ 문의주세용..');
+
+        const dom = document.cloneNode(true) as Document;
+        dom.getElementById('portal').remove();
+        dom.getElementById('sidebar').remove();
+
+        try {
+            const { data } = await Request.extractHtml(dom.querySelector('html').outerHTML);
+            if (data) {
+                alert('HTML 파일을 성공적으로 추출했어요!!');
+                return;
+            }
+            alert('실패ㅠㅠ 문의주세요...');
+        } catch (e) {
+            alert('서버를 켰는지 확인하세요!! 켰는데도 이러면 문의주세요....');
+        }
     }
 }

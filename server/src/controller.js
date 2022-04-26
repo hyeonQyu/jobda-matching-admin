@@ -1,4 +1,4 @@
-const { getJsonData, saveJsonData } = require('./util/jsonUtil');
+const { getJsonData, saveJsonData, saveHtml } = require('./util/fileUtil');
 const axios = require('axios');
 
 const doCommonResponse = (app, path, method, callback) => {
@@ -19,6 +19,11 @@ const doCommonResponse = (app, path, method, callback) => {
  * Controller
  */
 module.exports = {
+    /**
+     * 데이터 불러오기
+     * @param app
+     * @param path
+     */
     load: (app, path) => {
         doCommonResponse(app, path, 'get', (req, res) => {
             const data = {
@@ -36,6 +41,11 @@ module.exports = {
         });
     },
 
+    /**
+     * 수정사항 저장하기
+     * @param app
+     * @param path
+     */
     save: (app, path) => {
         doCommonResponse(app, path, 'post', (req, res) => {
             const { body } = req;
@@ -52,6 +62,11 @@ module.exports = {
         });
     },
 
+    /**
+     * 채용공고 URL에서 공고 정보 얻어오기
+     * @param app
+     * @param path
+     */
     getRecruitNoticeInfoByUrl: (app, path) => {
         doCommonResponse(app, path, 'post', async (req, res) => {
             const { url } = req.body;
@@ -95,6 +110,19 @@ module.exports = {
 
             console.log('data', resData);
             res.send(resData);
+        });
+    },
+
+    extractHtml: (app, path) => {
+        doCommonResponse(app, path, 'post', (req, res) => {
+            const { html } = req.body;
+            try {
+                saveHtml(html);
+                res.send(true);
+            } catch (e) {
+                console.error(e);
+                res.send(false);
+            }
         });
     },
 };

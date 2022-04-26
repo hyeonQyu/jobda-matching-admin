@@ -18,4 +18,15 @@ module.exports = {
         console.log(`${fileName}.json 저장 완료`);
         console.log('-----------------------------------');
     },
+
+    saveHtml(html) {
+        console.log('-----------------------------------');
+        console.log('html 저장');
+        const today = new Date();
+        const todayDatetime = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+        const fileName = `landing${todayDatetime}.html`;
+        fs.writeFileSync(`./html/${fileName}`, html);
+        console.log(`${fileName} 저장 완료`);
+        console.log('-----------------------------------');
+    },
 };

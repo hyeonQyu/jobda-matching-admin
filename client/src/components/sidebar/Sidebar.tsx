@@ -5,7 +5,7 @@ import { useStore } from '@contexts/StoreContext';
 
 const Sidebar = observer(() => {
     const { store } = useStore();
-    const { reset, save, toggleEditMode, isEditMode } = store;
+    const { reset, save, toggleEditMode, extractHtml, isEditMode } = store;
 
     return (
         <div className={style.wrapper}>
@@ -18,6 +18,9 @@ const Sidebar = observer(() => {
                 </div>
                 <div className={style.button} onClick={reset}>
                     처음으로
+                </div>
+                <div className={style.button} onClick={extractHtml}>
+                    HTML 파일 추출
                 </div>
             </div>
         </div>
