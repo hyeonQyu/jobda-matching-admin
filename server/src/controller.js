@@ -1,5 +1,6 @@
 const { getJsonData, saveJsonData, saveHtml } = require('./util/fileUtil');
 const axios = require('axios');
+const https = require('https');
 
 const doCommonResponse = (app, path, method, callback) => {
     app[method](`/api/${path}`, async (req, res) => {
@@ -73,6 +74,7 @@ module.exports = {
 
             const { data } = await axios.get(
                 `https://api.${url.substring('https://www.'.length)}`.replace('position', 'positions').replace('/jd', ''),
+                { method: 'get', headers: { 'User-Agent': 'test' }, httpsAgent: new https.Agent({ rejectUnauthorized: false }) },
             );
             const { basicInfo, additionalInfo, companyInfo } = data;
             const { positionName, createdDateTime, recruitmentType } = basicInfo;
