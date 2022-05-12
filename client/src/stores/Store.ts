@@ -57,7 +57,7 @@ export default class Store {
     @action
     addRecruitNotice(recruitNotice: RecruitNoticeInfo, jobGroupName: string) {
         const newJobGroup: JobGroupInfo = this._jobGroupList.filter(({ name }) => name === jobGroupName)[0];
-        newJobGroup.recruitNoticeList.push(recruitNotice);
+        newJobGroup.recruitNoticeList.unshift(recruitNotice);
     }
 
     @action
